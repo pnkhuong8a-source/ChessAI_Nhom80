@@ -1,0 +1,8 @@
+﻿{
+  "LevelId": "LV09",
+  "Title": "Cờ thế 5: Tàn cuộc Vua và Hậu (2 nước)",
+  "Difficulty": "Hard",
+  "InitialFen": "7k/8/5K2/8/8/8/8/1Q6",
+  "BaseScore": 950,
+  "TimeLimitSeconds": 180
+}

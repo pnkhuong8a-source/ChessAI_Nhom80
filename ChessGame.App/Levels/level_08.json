@@ -1,0 +1,8 @@
+﻿{
+  "LevelId": "LV08",
+  "Title": "Cờ thế 4: Song Xe phối hợp (2 nước)",
+  "Difficulty": "Medium",
+  "InitialFen": "r5k1/5ppp/8/8/8/8/R7/1R2K3",
+  "BaseScore": 900,
+  "TimeLimitSeconds": 180
+}

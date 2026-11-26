@@ -1,0 +1,8 @@
+﻿{
+  "LevelId": "LV02",
+  "Title": "Chế độ 2: Đấu với AI - Mức Dễ",
+  "Difficulty": "Easy",
+  "InitialFen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
+  "BaseScore": 600,
+  "TimeLimitSeconds": 600
+}

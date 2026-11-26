@@ -1,0 +1,8 @@
+﻿{
+  "LevelId": "LV07",
+  "Title": "Cờ thế 3: Đòn thắt cổ của Mã (1 nước)",
+  "Difficulty": "Medium",
+  "InitialFen": "6rk/5Npp/8/8/8/8/8/4K3",
+  "BaseScore": 850,
+  "TimeLimitSeconds": 150
+}

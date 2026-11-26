@@ -1,0 +1,8 @@
+﻿{
+  "LevelId": "LV06",
+  "Title": "Cờ thế 2: Hậu tấn công trực diện (1 nước)",
+  "Difficulty": "Easy",
+  "InitialFen": "5rk1/5ppp/8/8/8/5Q2/8/4K3",
+  "BaseScore": 750,
+  "TimeLimitSeconds": 120
+}

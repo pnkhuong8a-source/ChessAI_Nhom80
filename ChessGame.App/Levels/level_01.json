@@ -1,0 +1,8 @@
+﻿{
+  "LevelId": "LV01",
+  "Title": "Chế độ 1: Chơi 2 người (Tiêu chuẩn)",
+  "Difficulty": "PvP",
+  "InitialFen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
+  "BaseScore": 500,
+  "TimeLimitSeconds": 900
+}

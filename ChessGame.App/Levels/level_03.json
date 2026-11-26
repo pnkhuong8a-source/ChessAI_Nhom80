@@ -1,0 +1,8 @@
+﻿{
+  "LevelId": "LV03",
+  "Title": "Chế độ 3: Đấu với AI - Mức Trung Bình",
+  "Difficulty": "Medium",
+  "InitialFen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
+  "BaseScore": 800,
+  "TimeLimitSeconds": 600
+}

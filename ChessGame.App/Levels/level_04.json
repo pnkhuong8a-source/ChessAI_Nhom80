@@ -1,0 +1,8 @@
+﻿{
+  "LevelId": "LV04",
+  "Title": "Chế độ 4: Đấu với AI - Mức Khó",
+  "Difficulty": "Hard",
+  "InitialFen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
+  "BaseScore": 1000,
+  "TimeLimitSeconds": 600
+}
