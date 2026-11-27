@@ -10,8 +10,11 @@ namespace ChessGame.Core.Commands
         public ChessPiece MovedPiece { get; }
         public ChessPiece? CapturedPiece { get; set; }
         public PieceType? PromotionType { get; set; }
+        public ChessPiece? PromotedPiece { get; set; }
         public bool WasFirstMove { get; set; }
         public bool IsCastling { get; set; }
+        public bool IsEnPassant { get; set; }
+        public int PreviousHalfMoveClock { get; set; }
 
         public MoveCommand(Position from, Position to, ChessPiece movedPiece, PieceType? promotion = null)
         {

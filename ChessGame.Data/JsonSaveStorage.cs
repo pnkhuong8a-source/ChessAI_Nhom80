@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using ChessGame.Core.Entities;
 using ChessGame.Core.Exceptions;
 using ChessGame.Core.Interfaces;
 
@@ -82,6 +83,32 @@ namespace ChessGame.Data
             catch (JsonException ex)
             {
                 throw new SaveCorruptedException("Tệp bảng xếp hạng bị hỏng.", ex);
+            }
+        }
+
+        // =========================================================================
+        // PHẦN MỞ RỘNG MỚI: Lưu & Đọc hồ sơ tài khoản (Elo, Uy tín, Bảng xếp hạng)
+        // =========================================================================
+        public void SaveProfiles(string filePath, List<PlayerProfile> profiles)
+        {
+            string? dir = Path.GetDirectoryName(filePath);
+            if (!string.IsNullOrEmpty(dir)) Directory.CreateDirectory(dir);
+
+            string json = JsonSerializer.Serialize(profiles, _jsonOptions);
+            File.WriteAllText(filePath, json);
+        }
+
+        public List<PlayerProfile> LoadProfiles(string filePath)
+        {
+            if (!File.Exists(filePath)) return new List<PlayerProfile>();
+            try
+            {
+                string json = File.ReadAllText(filePath);
+                return JsonSerializer.Deserialize<List<PlayerProfile>>(json) ?? new List<PlayerProfile>();
+            }
+            catch (JsonException ex)
+            {
+                throw new SaveCorruptedException("Tệp dữ liệu tài khoản người chơi bị hỏng.", ex);
             }
         }
     }

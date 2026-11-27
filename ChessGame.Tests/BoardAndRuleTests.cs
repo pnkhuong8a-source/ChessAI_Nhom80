@@ -26,38 +26,37 @@ namespace ChessGame.Tests
         public void Test02_Pawn_InitialMove_CanMoveOneOrTwoSteps()
         {
             var board = PieceFactory.CreateBoardFromFen(StandardStartFen);
-            var whitePawn = board.GetPieceAt(new Position(6, 4))!; // Tốt e2
+            var whitePawn = board.GetPieceAt(new Position(6, 4))!;
             var moves = whitePawn.GetPseudoLegalMoves(board);
 
             Assert.Equal(2, moves.Count);
-            Assert.Contains(new Position(5, 4), moves); // e3
-            Assert.Contains(new Position(4, 4), moves); // e4
+            Assert.Contains(new Position(5, 4), moves);
+            Assert.Contains(new Position(4, 4), moves);
         }
 
         [Fact]
         public void Test03_Knight_CanJumpOverPieces()
         {
             var board = PieceFactory.CreateBoardFromFen(StandardStartFen);
-            var whiteKnight = board.GetPieceAt(new Position(7, 1))!; // Mã b1
+            var whiteKnight = board.GetPieceAt(new Position(7, 1))!;
             var moves = whiteKnight.GetPseudoLegalMoves(board);
 
             Assert.Equal(2, moves.Count);
-            Assert.Contains(new Position(5, 0), moves); // a3
-            Assert.Contains(new Position(5, 2), moves); // c3
+            Assert.Contains(new Position(5, 0), moves);
+            Assert.Contains(new Position(5, 2), moves);
         }
 
         [Fact]
         public void Test04_Rook_BlockedByFriendlyPieces_HasZeroMovesAtStart()
         {
             var board = PieceFactory.CreateBoardFromFen(StandardStartFen);
-            var whiteRook = board.GetPieceAt(new Position(7, 0))!; // Xe a1
+            var whiteRook = board.GetPieceAt(new Position(7, 0))!;
             Assert.Empty(whiteRook.GetPseudoLegalMoves(board));
         }
 
         [Fact]
         public void Test05_RuleEngine_DetectCheck_WhenKingAttackedByRook()
         {
-            // Vua trắng ở e1 (7,4), Xe đen chiếu thẳng ở e8 (0,4)
             var board = PieceFactory.CreateBoardFromFen("4r3/8/8/8/8/8/8/4K3");
             Assert.True(RuleEngine.IsKingInCheck(board, PieceColor.White));
         }
@@ -65,11 +64,9 @@ namespace ChessGame.Tests
         [Fact]
         public void Test06_RuleEngine_FilterMovesThatLeaveKingInCheck()
         {
-            // Vua trắng e1 (7,4), Xe trắng e2 (6,4) đang che chắn cho Vua khỏi Xe đen e8 (0,4)
             var board = PieceFactory.CreateBoardFromFen("4r3/8/8/8/8/8/4R3/4K3");
             var validMoves = board.GetAllValidMoves(PieceColor.White);
 
-            // Xe trắng e2 chỉ được đi dọc cột e (không được rời cột e vì sẽ làm Vua bị chiếu)
             var rookMoves = validMoves.Where(m => m.MovedPiece.Type == PieceType.Rook).ToList();
             Assert.All(rookMoves, m => Assert.Equal(4, m.To.Col));
         }
@@ -77,7 +74,6 @@ namespace ChessGame.Tests
         [Fact]
         public void Test07_RuleEngine_DetectCheckmate_BackRankMate()
         {
-            // Chiếu bí hàng ngang cuối: Vua đen g8 (0,6), Tốt đen f7,g7,h7 chặn đường, Xe trắng a8 (0,0) chiếu bí
             var board = PieceFactory.CreateBoardFromFen("R5k1/5ppp/8/8/8/8/8/4K3");
             var status = RuleEngine.EvaluateGameStatus(board, PieceColor.Black);
             Assert.Equal(GameStatus.Checkmate, status);
@@ -121,11 +117,59 @@ namespace ChessGame.Tests
             Assert.Equal(StandardStartFen, loaded.FenString);
             Assert.Equal(45, loaded.ElapsedSeconds);
 
-            // Ghi đè dữ liệu hỏng và kiểm tra Custom Exception
             File.WriteAllText(tempFile, "{ invalid_json ");
             Assert.Throws<SaveCorruptedException>(() => storage.LoadGame(tempFile));
 
             File.Delete(tempFile);
+        }
+
+        [Fact]
+        public void Test11_Castling_Kingside_MovesBothKingAndRook()
+        {
+            var board = PieceFactory.CreateBoardFromFen("4k3/8/8/8/8/8/8/4K2R");
+            var validMoves = board.GetAllValidMoves(PieceColor.White);
+            var castlingMove = validMoves.FirstOrDefault(m => m.IsCastling && m.To.Col == 6);
+
+            Assert.NotNull(castlingMove);
+            board.ApplyMove(castlingMove!);
+            Assert.Equal(PieceType.King, board.GetPieceAt(new Position(7, 6))?.Type);
+            Assert.Equal(PieceType.Rook, board.GetPieceAt(new Position(7, 5))?.Type);
+        }
+
+        [Fact]
+        public void Test12_EnPassant_CapturesPawnBehindTargetSquare()
+        {
+            var board = PieceFactory.CreateBoardFromFen("4k3/3p4/8/4P3/8/8/8/4K3");
+            var blackPawn = board.GetPieceAt(new Position(1, 3))!;
+            board.ApplyMove(new MoveCommand(new Position(1, 3), new Position(3, 3), blackPawn));
+
+            var whiteMoves = board.GetAllValidMoves(PieceColor.White);
+            var epMove = whiteMoves.FirstOrDefault(m => m.IsEnPassant);
+
+            Assert.NotNull(epMove);
+            board.ApplyMove(epMove!);
+            Assert.Null(board.GetPieceAt(new Position(3, 3)));
+            Assert.Equal(PieceType.Pawn, board.GetPieceAt(new Position(2, 3))?.Type);
+        }
+
+        [Fact]
+        public void Test13_ReputationAndRating_AbandonPenaltyAndRankLock()
+        {
+            var player = new PlayerProfile { Username = "Khuong", Elo = 1000 };
+            Assert.True(player.CanPlayRanked());
+
+            for (int i = 0; i < 4; i++) player.ApplyAbandonPenalty();
+            Assert.Equal(88, player.Reputation);
+            Assert.False(player.CanPlayRanked());
+            Assert.True(player.CanPlayCasual());
+        }
+
+        [Fact]
+        public void Test14_Matchmaking_PityBotTriggersAfterFiveConsecutiveLosses()
+        {
+            var player = new PlayerProfile { Elo = 1400, ConsecutiveLosses = 6 };
+            int botLevel = MatchmakingAndRatingService.SelectBotLevelForRanked(player);
+            Assert.Equal(1, botLevel);
         }
     }
 }
