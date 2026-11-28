@@ -1,0 +1,470 @@
+[
+  {
+    "Id": "C1_01",
+    "Name": "Bước Nhỏ",
+    "Tier": 1,
+    "EffectCode": "PAWN_SIDE_STEP",
+    "TargetType": "AllyPieceAndSquare",
+    "Description": "Dịch chuyển 1 Tốt đồng minh sang ngang 1 ô (trái hoặc phải).",
+    "Constraint": "Ô đích phải trống; Vua không bị chiếu."
+  },
+  {
+    "Id": "C1_02",
+    "Name": "Lùi Bước",
+    "Tier": 1,
+    "EffectCode": "ALLY_STEP_BACK",
+    "TargetType": "AllyPieceAndSquare",
+    "Description": "Cho phép 1 quân đồng minh lùi thẳng về phía sau 1 ô.",
+    "Constraint": "Trừ Vua và Tốt; ô đích phải trống."
+  },
+  {
+    "Id": "C1_03",
+    "Name": "Tiên Phong",
+    "Tier": 1,
+    "EffectCode": "PAWN_DOUBLE_ADVANCE",
+    "TargetType": "AllyPiece",
+    "Description": "1 Tốt ở hàng 3 (Trắng) hoặc hàng 6 (Đen) được tiến thẳng 2 ô.",
+    "Constraint": "Cả 2 ô phía trước phải trống."
+  },
+  {
+    "Id": "C1_04",
+    "Name": "Giáp Gỗ",
+    "Tier": 1,
+    "EffectCode": "PAWN_SHIELD",
+    "TargetType": "AllyPiece",
+    "Description": "Chọn 1 Tốt đồng minh; Tốt đó miễn nhiễm bị ăn trong 1 lượt địch.",
+    "Constraint": "Chỉ áp dụng cho quân Tốt."
+  },
+  {
+    "Id": "C1_05",
+    "Name": "Trói Chân Tốt",
+    "Tier": 1,
+    "EffectCode": "FREEZE_ENEMY_PAWN",
+    "TargetType": "EnemyPiece",
+    "Description": "Khóa 1 Tốt địch, không cho di chuyển trong lượt kế tiếp.",
+    "Constraint": "Chỉ áp dụng cho Tốt địch."
+  },
+  {
+    "Id": "C1_06",
+    "Name": "Sương Mù",
+    "Tier": 1,
+    "EffectCode": "FOG_SQUARE",
+    "TargetType": "EmptySquare",
+    "Description": "Chọn 1 ô trống; đối thủ không được dừng quân tại ô đó trong 1 lượt.",
+    "Constraint": "Quân địch vẫn có thể đi xuyên qua ô này."
+  },
+  {
+    "Id": "C1_07",
+    "Name": "Lách Chéo",
+    "Tier": 1,
+    "EffectCode": "PAWN_DIAGONAL_EMPTY",
+    "TargetType": "AllyPiece",
+    "Description": "Chọn 1 Tốt đồng minh; lượt này Tốt được đi chéo 1 ô về phía trước vào ô trống.",
+    "Constraint": "Chỉ đi vào ô trống (không ăn quân); không tự phong cấp."
+  },
+  {
+    "Id": "C1_08",
+    "Name": "Quân Sư",
+    "Tier": 1,
+    "EffectCode": "FREE_AI_HINT",
+    "TargetType": "None",
+    "Description": "Kích hoạt 1 lần AI Gợi ý nước đi tốt nhất miễn phí.",
+    "Constraint": "Không bị trừ điểm cuối trận."
+  },
+  {
+    "Id": "C1_09",
+    "Name": "Đâm Thẳng",
+    "Tier": 1,
+    "EffectCode": "PAWN_FORWARD_CAPTURE",
+    "TargetType": "AllyPiece",
+    "Description": "1 Tốt đồng minh được phép ăn thẳng 1 ô phía trước trong lượt này.",
+    "Constraint": "Không áp dụng lên Vua địch."
+  },
+  {
+    "Id": "C1_10",
+    "Name": "Vũ Điệu Mã",
+    "Tier": 1,
+    "EffectCode": "KNIGHT_ORTHO_STEP",
+    "TargetType": "AllyPiece",
+    "Description": "Chọn 1 Mã; trong lượt này Mã được phép đi thẳng 1 ô (ngang/dọc).",
+    "Constraint": "Không được dùng nước đi thẳng này để ăn quân."
+  },
+  {
+    "Id": "C1_11",
+    "Name": "Đổi Màu Tượng",
+    "Tier": 1,
+    "EffectCode": "BISHOP_COLOR_SHIFT",
+    "TargetType": "AllyPieceAndSquare",
+    "Description": "Chọn 1 Tượng; Tượng được nhích ngang hoặc dọc 1 ô trống.",
+    "Constraint": "Ô đích phải trống; không ăn quân."
+  },
+  {
+    "Id": "C1_12",
+    "Name": "Xe Nhích Bước",
+    "Tier": 1,
+    "EffectCode": "ROOK_DIAG_STEP",
+    "TargetType": "AllyPiece",
+    "Description": "Chọn 1 Xe; Xe được phép đi chéo 1 ô trống trong lượt này.",
+    "Constraint": "Không được dùng nước đi chéo này để ăn quân."
+  },
+  {
+    "Id": "C1_13",
+    "Name": "Cọc Chắn Đường",
+    "Tier": 1,
+    "EffectCode": "PLACE_BARRICADE",
+    "TargetType": "EmptySquare",
+    "Description": "Đặt chướng ngại vật trên 1 ô trống ở nửa sân nhà trong 1 vòng lượt.",
+    "Constraint": "Chặn cả quân ta lẫn quân địch đi qua hoặc dừng lại."
+  },
+  {
+    "Id": "C1_14",
+    "Name": "Bù Giờ",
+    "Tier": 1,
+    "EffectCode": "ADD_TIME_OR_SCORE",
+    "TargetType": "None",
+    "Description": "Cộng thêm +20 giây vào đồng hồ lượt hiện tại (hoặc +150 điểm).",
+    "Constraint": "Có hiệu lực ngay khi kích hoạt."
+  },
+  {
+    "Id": "C1_15",
+    "Name": "Cảnh Giác",
+    "Tier": 1,
+    "EffectCode": "REVEAL_THREATS",
+    "TargetType": "None",
+    "Description": "Tô sáng toàn bộ các ô đang bị quân địch khống chế trong 2 lượt.",
+    "Constraint": "Hỗ trợ quan sát trên giao diện."
+  },
+  {
+    "Id": "C1_16",
+    "Name": "Đổi Bài",
+    "Tier": 1,
+    "EffectCode": "MULLIGAN_CARD",
+    "TargetType": "HandCard",
+    "Description": "Hủy 1 thẻ khác trên tay và rút ngẫu nhiên 1 thẻ Cấp 1 hoặc Cấp 2.",
+    "Constraint": "Chỉ dùng được khi đang cầm từ 2 thẻ trở lên."
+  },
+  {
+    "Id": "C2_01",
+    "Name": "Đóng Băng",
+    "Tier": 2,
+    "EffectCode": "FREEZE_UNIT_1",
+    "TargetType": "EnemyPiece",
+    "Description": "Khóa 1 quân địch, không cho đi hoặc ăn quân trong 1 lượt địch.",
+    "Constraint": "Trừ Vua và Hậu địch."
+  },
+  {
+    "Id": "C2_02",
+    "Name": "Hộ Giá",
+    "Tier": 2,
+    "EffectCode": "SHIELD_UNIT_1",
+    "TargetType": "AllyPiece",
+    "Description": "Chọn 1 quân đồng minh; miễn nhiễm bị ăn trong lượt tới của địch.",
+    "Constraint": "Trừ Vua và Hậu đồng minh."
+  },
+  {
+    "Id": "C2_03",
+    "Name": "Hoán Đổi",
+    "Tier": 2,
+    "EffectCode": "SWAP_ALLIES",
+    "TargetType": "TwoAllyPieces",
+    "Description": "Đổi vị trí 2 quân đồng minh bất kỳ đang đứng trên bàn cờ.",
+    "Constraint": "Trừ Vua; không đưa Tốt lên hàng phong cấp."
+  },
+  {
+    "Id": "C2_04",
+    "Name": "Mã Nhảy Xa",
+    "Tier": 2,
+    "EffectCode": "KNIGHT_EXTENDED_L",
+    "TargetType": "AllyPiece",
+    "Description": "Chọn 1 Mã; lượt này Mã được nhảy chữ L mở rộng (3x1 ô).",
+    "Constraint": "Giữ nguyên khả năng nhảy qua quân."
+  },
+  {
+    "Id": "C2_05",
+    "Name": "Tượng Xuyên Thấu",
+    "Tier": 2,
+    "EffectCode": "BISHOP_PHASE",
+    "TargetType": "AllyPiece",
+    "Description": "Chọn 1 Tượng; lượt này Tượng được nhảy qua tối đa 1 quân cản.",
+    "Constraint": "Không ăn quân bị nhảy qua."
+  },
+  {
+    "Id": "C2_06",
+    "Name": "Xe Xung Kích",
+    "Tier": 2,
+    "EffectCode": "ROOK_JUMP_PAWN",
+    "TargetType": "AllyPiece",
+    "Description": "Chọn 1 Xe; lượt này Xe được nhảy qua 1 Tốt đồng minh để đi hoặc ăn.",
+    "Constraint": "Chỉ nhảy qua Tốt phe mình."
+  },
+  {
+    "Id": "C2_07",
+    "Name": "Tốt Cảm Tử",
+    "Tier": 2,
+    "EffectCode": "PAWN_KAMIKAZE",
+    "TargetType": "AllyAndEnemyPiece",
+    "Description": "Chọn 1 Tốt mình đứng sát cạnh (ngang/dọc) 1 quân địch; tiêu diệt cả hai.",
+    "Constraint": "Không áp dụng lên Vua và Hậu địch."
+  },
+  {
+    "Id": "C2_08",
+    "Name": "Vua Hành Quân",
+    "Tier": 2,
+    "EffectCode": "KING_MARCH_2",
+    "TargetType": "None",
+    "Description": "Vua được phép đi thẳng (ngang/dọc) tối đa 2 ô trong lượt này.",
+    "Constraint": "Không ăn quân; không đi qua ô bị chiếu."
+  },
+  {
+    "Id": "C2_09",
+    "Name": "Cạm Bẫy",
+    "Tier": 2,
+    "EffectCode": "PLACE_FREEZE_TRAP",
+    "TargetType": "EmptySquare",
+    "Description": "Gài bẫy bí mật lên 1 ô trống; quân địch bước vào sẽ bị Đóng Băng 1 lượt.",
+    "Constraint": "Không kích hoạt với Vua địch."
+  },
+  {
+    "Id": "C2_10",
+    "Name": "Tước Vũ Khí",
+    "Tier": 2,
+    "EffectCode": "DISARM_ENEMY",
+    "TargetType": "EnemyPiece",
+    "Description": "Chọn 1 quân địch; lượt tới quân đó chỉ được đi vào ô trống, cấm ăn quân.",
+    "Constraint": "Trừ Vua địch."
+  },
+  {
+    "Id": "C2_11",
+    "Name": "Chiêu Mộ",
+    "Tier": 2,
+    "EffectCode": "RECRUIT_PAWN",
+    "TargetType": "EmptySquare",
+    "Description": "Triệu hồi 1 Tốt mới vào một ô trống trên hàng xuất phát của Tốt.",
+    "Constraint": "Tổng số Tốt đồng minh trên bàn không quá 8."
+  },
+  {
+    "Id": "C2_12",
+    "Name": "Triệu Hồi Về",
+    "Tier": 2,
+    "EffectCode": "RECALL_HOME",
+    "TargetType": "AllyPieceAndSquare",
+    "Description": "Đưa 1 quân đồng minh quay về đúng hàng xuất phát ban đầu của nó.",
+    "Constraint": "Trừ Vua; ô xuất phát phải đang trống."
+  },
+  {
+    "Id": "C2_13",
+    "Name": "Khóa Đường Chéo",
+    "Tier": 2,
+    "EffectCode": "LOCK_DIAGONAL",
+    "TargetType": "EnemyPiece",
+    "Description": "Chọn 1 quân địch; lượt tới quân đó mất khả năng đi chéo.",
+    "Constraint": "Khắc chế trực tiếp Tượng và Hậu địch."
+  },
+  {
+    "Id": "C2_14",
+    "Name": "Sao Chép",
+    "Tier": 2,
+    "EffectCode": "COPY_LAST_ENEMY_CARD",
+    "TargetType": "None",
+    "Description": "Tạo bản sao của thẻ bài gần nhất mà đối thủ vừa kích hoạt.",
+    "Constraint": "Nếu đối thủ chưa dùng thẻ thì rút ngẫu nhiên 1 thẻ Cấp 2."
+  },
+  {
+    "Id": "C3_01",
+    "Name": "Băng Giá Vĩnh Cửu",
+    "Tier": 3,
+    "EffectCode": "FREEZE_UNIT_2",
+    "TargetType": "EnemyPiece",
+    "Description": "Đóng băng 1 quân địch bất kỳ (kể cả Hậu) trong 2 lượt địch.",
+    "Constraint": "Trừ Vua địch."
+  },
+  {
+    "Id": "C3_02",
+    "Name": "Thăng Cấp Nhanh",
+    "Tier": 3,
+    "EffectCode": "QUICK_PROMOTE_MINOR",
+    "TargetType": "AllyPiece",
+    "Description": "Chọn 1 Tốt đã qua nửa bàn cờ; phong cấp ngay thành Mã hoặc Tượng.",
+    "Constraint": "Không được chọn Hậu hoặc Xe."
+  },
+  {
+    "Id": "C3_03",
+    "Name": "Khiên Thánh",
+    "Tier": 3,
+    "EffectCode": "HOLY_SHIELD",
+    "TargetType": "AllyPiece",
+    "Description": "Chọn 1 quân mình (kể cả Hậu); miễn nhiễm bị ăn & hiệu ứng thẻ 1 vòng.",
+    "Constraint": "Trừ Vua đồng minh."
+  },
+  {
+    "Id": "C3_04",
+    "Name": "Dịch Chuyển",
+    "Tier": 3,
+    "EffectCode": "BLINK_3",
+    "TargetType": "AllyPieceAndSquare",
+    "Description": "Dịch chuyển 1 quân mình tới ô trống bất kỳ trong bán kính 3 ô.",
+    "Constraint": "Trừ Vua và Hậu; không chiếu trực tiếp Vua địch."
+  },
+  {
+    "Id": "C3_05",
+    "Name": "Sóng Xung Kích",
+    "Tier": 3,
+    "EffectCode": "SHOCKWAVE_PUSH",
+    "TargetType": "AllyPiece",
+    "Description": "Chọn 1 quân mình; đẩy lùi tất cả quân địch đứng sát cạnh ra xa 1 ô.",
+    "Constraint": "Trừ Vua địch; ô phía sau phải trống."
+  },
+  {
+    "Id": "C3_06",
+    "Name": "Phong Ấn Vùng",
+    "Tier": 3,
+    "EffectCode": "SEAL_2X2",
+    "TargetType": "EmptySquare",
+    "Description": "Khóa chặt một vùng 2x2 ô trống; cấm mọi quân đi vào trong 2 lượt.",
+    "Constraint": "Chỉ đặt lên vùng 2x2 đang hoàn toàn trống."
+  },
+  {
+    "Id": "C3_07",
+    "Name": "Đổi Hồn Tốt",
+    "Tier": 3,
+    "EffectCode": "SWAP_ALLY_ENEMY_PAWN",
+    "TargetType": "AllyAndEnemyPiece",
+    "Description": "Hoán đổi vị trí của 1 Tốt đồng minh với 1 Tốt của đối thủ.",
+    "Constraint": "Không đổi lên hàng phong cấp."
+  },
+  {
+    "Id": "C3_08",
+    "Name": "Hậu Tàng Hình",
+    "Tier": 3,
+    "EffectCode": "QUEEN_KNIGHT_MOVE",
+    "TargetType": "AllyPiece",
+    "Description": "Chọn Hậu mình; lượt này Hậu có thêm khả năng nhảy chữ L như Mã.",
+    "Constraint": "Chỉ có tác dụng trong 1 lượt."
+  },
+  {
+    "Id": "C3_09",
+    "Name": "Khiêu Khích",
+    "Tier": 3,
+    "EffectCode": "TAUNT_ENEMY",
+    "TargetType": "EnemyPiece",
+    "Description": "Chọn 1 quân địch; lượt kế tiếp đối thủ bắt buộc phải đi quân đó.",
+    "Constraint": "Trừ Vua; quân bị chọn phải có ít nhất 1 nước đi hợp lệ."
+  },
+  {
+    "Id": "C3_10",
+    "Name": "Thanh Tẩy",
+    "Tier": 3,
+    "EffectCode": "PURIFY_BOARD",
+    "TargetType": "None",
+    "Description": "Xóa mọi hiệu ứng xấu trên quân mình và gỡ bỏ Khiên của quân địch.",
+    "Constraint": "Tác dụng toàn bàn cờ."
+  },
+  {
+    "Id": "C3_11",
+    "Name": "Đội Hình Phalanx",
+    "Tier": 3,
+    "EffectCode": "PHALANX_SHIELD",
+    "TargetType": "None",
+    "Description": "Toàn bộ Tốt đồng minh đang đứng liền kề nhau (ngang/chéo) nhận Khiên 1 lượt.",
+    "Constraint": "Cần ít nhất 2 Tốt đồng minh đứng liên kết ngang hoặc chéo."
+  },
+  {
+    "Id": "C3_12",
+    "Name": "Đạo Chích",
+    "Tier": 3,
+    "EffectCode": "STEAL_ENEMY_CARD",
+    "TargetType": "None",
+    "Description": "Cướp ngẫu nhiên 1 thẻ chưa dùng trên tay đối thủ về tay mình.",
+    "Constraint": "Nếu đối thủ không có thẻ thì rút ngẫu nhiên 1 thẻ Cấp 3."
+  },
+  {
+    "Id": "C4_01",
+    "Name": "Hồi Sinh Tinh Anh",
+    "Tier": 4,
+    "EffectCode": "REVIVE_MINOR",
+    "TargetType": "EmptySquare",
+    "Description": "Hồi sinh 1 Mã hoặc Tượng đã bị ăn đặt vào ô trống ở hàng cuối sân nhà.",
+    "Constraint": "Hàng 1 (Trắng) hoặc hàng 8 (Đen); ô đích phải trống."
+  },
+  {
+    "Id": "C4_02",
+    "Name": "Thăng Hoa",
+    "Tier": 4,
+    "EffectCode": "ASCEND_PAWN",
+    "TargetType": "AllyPiece",
+    "Description": "Chọn 1 Tốt bất kỳ trên bàn cờ; phong cấp ngay thành Xe hoặc Hậu.",
+    "Constraint": "Không được chiếu bí Vua địch ngay lập tức."
+  },
+  {
+    "Id": "C4_03",
+    "Name": "Nước Đi Kép",
+    "Tier": 4,
+    "EffectCode": "DOUBLE_MOVE",
+    "TargetType": "None",
+    "Description": "Sau khi đi xong lượt này, được đi thêm 1 nước phụ bằng quân khác.",
+    "Constraint": "Nước phụ cấm ăn quân và cấm chiếu Vua địch."
+  },
+  {
+    "Id": "C4_04",
+    "Name": "Bão Tuyết",
+    "Tier": 4,
+    "EffectCode": "BLIZZARD_3X3",
+    "TargetType": "EmptySquare",
+    "Description": "Đóng băng toàn bộ quân địch nằm trong vùng 3x3 ô trong 1 lượt địch.",
+    "Constraint": "Không đóng băng được Vua địch."
+  },
+  {
+    "Id": "C4_05",
+    "Name": "Đổi Chỗ Ngang Tầm",
+    "Tier": 4,
+    "EffectCode": "EQUAL_VALUE_SWAP",
+    "TargetType": "AllyAndEnemyPiece",
+    "Description": "Hoán đổi vị trí 1 quân mình với 1 quân địch cùng giá trị vật chất.",
+    "Constraint": "VD: Mã <-> Tượng, Xe <-> Xe; không áp dụng cho Vua."
+  },
+  {
+    "Id": "C4_06",
+    "Name": "Nghịch Đảo Thời Gian",
+    "Tier": 4,
+    "EffectCode": "REWIND_ENEMY_MOVE",
+    "TargetType": "None",
+    "Description": "Hoàn tác lại nước đi vừa xong của đối thủ và giành quyền đi tiếp.",
+    "Constraint": "Không dùng được nếu đối thủ vừa chiếu bí."
+  },
+  {
+    "Id": "C4_07",
+    "Name": "Vua Xuất Chinh",
+    "Tier": 4,
+    "EffectCode": "KING_QUEEN_3",
+    "TargetType": "None",
+    "Description": "Lượt này Vua được phép di chuyển như Hậu (tối đa 3 ô thẳng/chéo).",
+    "Constraint": "Không được ăn quân và không đi vào ô bị chiếu."
+  },
+  {
+    "Id": "C4_08",
+    "Name": "Phản Đòn",
+    "Tier": 4,
+    "EffectCode": "COUNTER_STRIKE",
+    "TargetType": "AllyPiece",
+    "Description": "Gắn ấn ký lên 1 quân mình; nếu địch ăn quân này, quân địch cũng bị hủy.",
+    "Constraint": "Trừ Vua đồng minh."
+  },
+  {
+    "Id": "C4_09",
+    "Name": "Nhân Bản",
+    "Tier": 4,
+    "EffectCode": "MIRROR_CLONE",
+    "TargetType": "AllyPieceAndSquare",
+    "Description": "Chọn 1 quân đồng minh (trừ Vua, Hậu) và tạo bản sao đặt vào ô trống hàng cuối sân nhà.",
+    "Constraint": "Không nhân bản Vua/Hậu; ô đích hàng cuối phải trống."
+  },
+  {
+    "Id": "C4_10",
+    "Name": "Thiên Mệnh",
+    "Tier": 4,
+    "EffectCode": "DESTINY_DRAW_2",
+    "TargetType": "None",
+    "Description": "Rút ngay lập tức 2 thẻ ngẫu nhiên (1 thẻ Cấp 2 và 1 thẻ Cấp 3) vào tay.",
+    "Constraint": "Có thể vượt giới hạn 4 thẻ/trận."
+  }
+]

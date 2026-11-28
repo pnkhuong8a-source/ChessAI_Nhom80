@@ -19,8 +19,11 @@
             < 900 => "Đồng",
             < 1100 => "Bạc",
             < 1300 => "Vàng",
-            < 1600 => "Bạch Kim",
-            _ => "Kim Cương"
+            < 1500 => "Bạch Kim",
+            < 1700 => "Kim Cương",
+            < 1900 => "Tinh Anh",
+            < 2100 => "Cao Thủ",
+            _ => "Chiến Tướng"
         };
 
         public bool CanPlayCasual() => Reputation >= 80;

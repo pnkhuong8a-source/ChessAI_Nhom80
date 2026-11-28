@@ -1,4 +1,5 @@
-﻿using ChessGame.Core.Enums;
+﻿using ChessGame.Core.Arcade;
+using ChessGame.Core.Enums;
 
 namespace ChessGame.Core.Entities
 {
@@ -8,6 +9,7 @@ namespace ChessGame.Core.Entities
         public PieceType Type { get; }
         public Position CurrentPosition { get; set; }
         public bool HasMoved { get; set; }
+        public PieceBuffFlags Buffs { get; set; } = new();
 
         protected ChessPiece(PieceColor color, PieceType type, Position pos)
         {
